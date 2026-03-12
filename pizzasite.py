@@ -8,8 +8,12 @@ import time
 import requests
 import socket
 from threading import Thread
+from dotenv import load_dotenv
+import os
 
-bot = Bot(token="Тута токен")
+load_dotenv()
+bot = Bot(token=os.getenv('BOT_TOKEN'))
+
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
@@ -85,3 +89,4 @@ async def attackstart(message: types.Message):
                 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
+
